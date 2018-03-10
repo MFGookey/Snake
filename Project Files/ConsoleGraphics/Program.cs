@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 
-namespace ConsoleGraphics
+namespace SnakeWorks.Snake
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -271,5 +271,3 @@ namespace ConsoleGraphics
         }
     }
 }
-
-
