@@ -23,7 +23,7 @@ namespace SnakeWorks.Snake
 
         ConsoleColor bgColor = Console.BackgroundColor;
         ConsoleColor fgColor = Console.ForegroundColor;
-        int delay = 100;
+        int delay = 150;
         Direction direction = Direction.Right;
 
         int snakeLength = 8;
