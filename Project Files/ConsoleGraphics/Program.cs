@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Drawing;
-using System.Windows;
-using System.Collections.Generic;
-using System.Collections;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
 
 namespace SnakeWorks.Snake
@@ -14,7 +7,7 @@ namespace SnakeWorks.Snake
     {
         static void Main(string[] args)
         {
-            game:
+            while(true)
             {
 
                 Console.CursorVisible = (false);
@@ -209,37 +202,7 @@ namespace SnakeWorks.Snake
                 new Thread(() => Console.Beep(37, 1)).Start();
                 Console.BackgroundColor = ConsoleColor.Black;
                 Console.Clear();
-                /*
 
-                Console.Beep(2093, 260);
-
-                Console.Beep(1319, 260);
-
-                Console.Beep(1047, 260);
-
-                Console.Beep(1319, 260);
-
-                Console.Beep(1760, 260);
-
-                Console.Beep(1319, 260);
-
-                Console.Beep(932, 260);
-
-                Console.Beep(784, 260);
-               
-
-                Console.Beep(2093, 200);
-
-                Console.Beep(1319, 200);
-
-                Console.Beep(1047, 200);
-
-                Console.Beep(1319, 200);
-
-                Console.Beep(1760, 200);
-
-                Console.Beep(1319, 200);
-                */
 
                 Console.Beep(831, 250);
                 
@@ -266,7 +229,6 @@ namespace SnakeWorks.Snake
                 Thread.Sleep(500);
                 Console.ReadKey(true);
                 Console.ReadKey(true);
-                goto game;
             }
         }
     }
