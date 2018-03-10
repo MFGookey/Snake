@@ -2,6 +2,6 @@
 {
   public interface ISnakeDriver
   {
-    Direction GetDirection();
+    Direction GetDirection(Direction currentDirection);
   }
 }
