@@ -7,8 +7,8 @@
     <ProjectGuid>{DCA5773B-49FC-410F-A270-F6DB6FDE8F1C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConsoleGraphics</RootNamespace>
-    <AssemblyName>ConsoleGraphics</AssemblyName>
+    <RootNamespace>SnakeWorks.Snake</RootNamespace>
+    <AssemblyName>SnakeWorks.Snake</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
