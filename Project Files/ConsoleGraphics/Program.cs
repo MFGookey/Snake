@@ -14,7 +14,7 @@ namespace SnakeWorks.Snake
     {
         static void Main(string[] args)
         {
-            game:
+            while(true)
             {
 
                 Console.CursorVisible = (false);
@@ -265,8 +265,6 @@ namespace SnakeWorks.Snake
                 Console.WriteLine("\n\n\n\n\n\n             -- Press Any Key To Continue --");
                 Thread.Sleep(500);
                 Console.ReadKey(true);
-                Console.ReadKey(true);
-                goto game;
             }
         }
     }
