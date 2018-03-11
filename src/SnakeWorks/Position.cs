@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SnakeWorks.Snake
 {
-  public class Position
+  public class Position : ICloneable, IEquatable<Position>
   {
     public int X { get; set; }
     public int Y { get; set; }
@@ -16,6 +16,16 @@ namespace SnakeWorks.Snake
     {
       this.X = x;
       this.Y = y;
+    }
+
+    public object Clone()
+    {
+      return new Position(this.X, this.Y);
+    }
+
+    public bool Equals(Position other)
+    {
+      return (this.X == other.X && this.Y == other.Y);
     }
   }
 }
