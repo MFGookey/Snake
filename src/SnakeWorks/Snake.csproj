@@ -68,6 +68,7 @@
     <Compile Include="IGame.cs" />
     <Compile Include="ISnakeDriver.cs" />
     <Compile Include="KeyboardSnakeDriver.cs" />
+    <Compile Include="Position.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
