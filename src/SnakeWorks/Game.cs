@@ -51,8 +51,6 @@ namespace SnakeWorks.Snake
 
       Random rnd = new Random();
 
-      /*int x = 20;
-      int y = 20;*/
       Position currentPosition = new Position(20, 20);
 
       int colourTog = 1;
@@ -64,11 +62,17 @@ namespace SnakeWorks.Snake
       int pelletX = 0;
       int pelletY = 0;
 
-      int[] xPoints;
-      xPoints = new int[8] { 20, 19, 18, 17, 16, 15, 14, 13 };
-      int[] yPoints;
-      yPoints = new int[8] { 20, 20, 20, 20, 20, 20, 20, 20 };
 
+      var points = new Position[] {
+        new Position { X=20, Y=20 },
+        new Position { X=19, Y=20 },
+        new Position { X=18, Y=20 },
+        new Position { X=17, Y=20 },
+        new Position { X=16, Y=20 },
+        new Position { X=15, Y=20 },
+        new Position { X=14, Y=20 },
+        new Position { X=13, Y=20 }
+      };
 
       while (Alive)
       {
@@ -79,9 +83,9 @@ namespace SnakeWorks.Snake
           pelletX = rnd.Next(4, Console.WindowWidth - 4);
           pelletY = rnd.Next(4, Console.WindowHeight - 4);
 
-          for (int l = (xPoints.Length - 1); l > 1; l--)
+          for (int l = (points.Length - 1); l > 1; l--)
           {
-            if (xPoints[l] == pelletX & yPoints[l] == pelletY)
+            if (points[l].X == pelletX & points[l].Y == pelletY)
             {
               collide = true;
             }
@@ -101,8 +105,10 @@ namespace SnakeWorks.Snake
           }
 
         }
-        Array.Resize<int>(ref xPoints, snakeLength);
-        Array.Resize<int>(ref yPoints, snakeLength);
+
+
+        Array.Resize<Position>(ref points, snakeLength);
+        
 
         System.Threading.Thread.Sleep(delay);
         this.Ticks++;
@@ -126,19 +132,17 @@ namespace SnakeWorks.Snake
             break;
         }
 
-        xPoints[0] = currentPosition.X;
-        yPoints[0] = currentPosition.Y;
+        points[0] = (Position)currentPosition.Clone();
 
-        for (int l = (xPoints.Length - 1); l > 0; l--)
+        for (int l = (points.Length - 1); l > 0; l--)
         {
-          xPoints[l] = xPoints[l - 1];
-          yPoints[l] = yPoints[l - 1];
+          points[l] = points[l - 1];
         }
 
 
         try
         {
-          Console.SetCursorPosition(xPoints[0], yPoints[0]);
+          Console.SetCursorPosition(points[0].X, points[0].Y);
         }
         catch (System.ArgumentOutOfRangeException)
         {
@@ -158,7 +162,7 @@ namespace SnakeWorks.Snake
 
         try
         {
-          Console.SetCursorPosition(xPoints[xPoints.Length - 1], yPoints[yPoints.Length - 1]);
+          Console.SetCursorPosition(points[points.Length-1].X, points[points.Length - 1].Y);
         }
         catch (System.ArgumentOutOfRangeException)
         {
@@ -176,9 +180,9 @@ namespace SnakeWorks.Snake
           this.TicksSinceLastScore = 0;
         }
 
-        for (int l = (xPoints.Length - 1); l > 1; l--)
+        for (int l = (points.Length - 1); l > 1; l--)
         {
-          if (xPoints[l] == xPoints[0] & yPoints[l] == yPoints[0])
+          if (points[l].X == points[0].X & points[l].Y == points[0].Y)
           {
             Alive = false;
           }
