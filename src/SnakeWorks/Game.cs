@@ -51,8 +51,10 @@ namespace SnakeWorks.Snake
 
       Random rnd = new Random();
 
-      int x = 20;
-      int y = 20;
+      /*int x = 20;
+      int y = 20;*/
+      Position currentPosition = new Position(20, 20);
+
       int colourTog = 1;
       this.Alive = true;
       this.Score = 0;
@@ -111,21 +113,21 @@ namespace SnakeWorks.Snake
         switch (direction)
         {
           case Direction.Right:
-            x += 1;
+            currentPosition.X += 1;
             break;
           case Direction.Left:
-            x -= 1;
+            currentPosition.X -= 1;
             break;
           case Direction.Down:
-            y += 1;
+            currentPosition.Y += 1;
             break;
           case Direction.Up:
-            y -= 1;
+            currentPosition.Y -= 1;
             break;
         }
 
-        xPoints[0] = x;
-        yPoints[0] = y;
+        xPoints[0] = currentPosition.X;
+        yPoints[0] = currentPosition.Y;
 
         for (int l = (xPoints.Length - 1); l > 0; l--)
         {
@@ -165,7 +167,7 @@ namespace SnakeWorks.Snake
         Console.BackgroundColor = bgColor;
         Console.Write(" ");
 
-        if (x == pelletX & y == pelletY)
+        if (currentPosition.X == pelletX & currentPosition.Y == pelletY)
         {
           pelletOn = false;
           snakeLength += 1;
