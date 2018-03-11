@@ -59,8 +59,7 @@ namespace SnakeWorks.Snake
       this.Ticks = 0;
       this.TicksSinceLastScore = 0;
       bool pelletOn = false;
-      int pelletX = 0;
-      int pelletY = 0;
+      var pelletPosition = new Position(0, 0);
 
 
       var points = new Position[] {
@@ -80,12 +79,12 @@ namespace SnakeWorks.Snake
         {
           bool collide = false;
           pelletOn = true;
-          pelletX = rnd.Next(4, Console.WindowWidth - 4);
-          pelletY = rnd.Next(4, Console.WindowHeight - 4);
+          pelletPosition.X = rnd.Next(4, Console.WindowWidth - 4);
+          pelletPosition.Y = rnd.Next(4, Console.WindowHeight - 4);
 
           for (int l = (points.Length - 1); l > 1; l--)
           {
-            if (points[l].X == pelletX & points[l].Y == pelletY)
+            if (points[l].Equals(pelletPosition))
             {
               collide = true;
             }
@@ -97,7 +96,7 @@ namespace SnakeWorks.Snake
           }
           else
           {
-            Console.SetCursorPosition(pelletX, pelletY);
+            Console.SetCursorPosition(pelletPosition.X, pelletPosition.Y);
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.BackgroundColor = bgColor;
             Console.Write("#");
@@ -171,7 +170,7 @@ namespace SnakeWorks.Snake
         Console.BackgroundColor = bgColor;
         Console.Write(" ");
 
-        if (currentPosition.X == pelletX & currentPosition.Y == pelletY)
+        if (currentPosition.Equals(pelletPosition))
         {
           pelletOn = false;
           snakeLength += 1;
@@ -182,7 +181,7 @@ namespace SnakeWorks.Snake
 
         for (int l = (points.Length - 1); l > 1; l--)
         {
-          if (points[l].X == points[0].X & points[l].Y == points[0].Y)
+          if (points[0].Equals(points[l]))
           {
             Alive = false;
           }
