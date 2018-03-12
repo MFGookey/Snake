@@ -1,0 +1,3 @@
+http://www.primaryobjects.com/2009/05/06/using-neural-networks-and-genetic-algorithms-in-c-net/
+https://sourceforge.net/projects/neurondotnet/files/
+https://www.codeproject.com/Articles/9702/A-simpler-C-genetic-algorithm
