@@ -25,9 +25,32 @@ namespace SnakeWorks.Snake
 
     public int TicksSinceLastScore { get; private set; }
 
-    public bool Alive { get; private set; }
+    private bool _alive;
+
+    public bool Alive
+    {
+      get
+      {
+        lock (_aliveLock)
+        {
+          return _alive;
+        }
+      }
+
+      private set
+      {
+        lock (_aliveLock)
+        {
+          _alive = value;
+        }
+      }
+    }
+
+    private readonly object _aliveLock = new object();
 
     private ISnakeDriver Driver { get; set; }
+
+    public EndingReason EndingReason { get; private set; }
 
     public void RunGame()
     {
@@ -145,7 +168,9 @@ namespace SnakeWorks.Snake
         }
         catch (System.ArgumentOutOfRangeException)
         {
+          // We hit a wall
           Alive = false;
+          this.EndingReason = EndingReason.HitWall;
         }
         if (colourTog == 2)
         {
@@ -156,6 +181,7 @@ namespace SnakeWorks.Snake
           colourTog = 1;
           Console.BackgroundColor = ConsoleColor.Green;
         }
+
         Console.ForegroundColor = fgColor;
         Console.Write("*");
 
@@ -165,7 +191,9 @@ namespace SnakeWorks.Snake
         }
         catch (System.ArgumentOutOfRangeException)
         {
+          // We hit a wall
           Alive = false;
+          this.EndingReason = EndingReason.HitWall;
         }
         Console.BackgroundColor = bgColor;
         Console.Write(" ");
@@ -183,7 +211,9 @@ namespace SnakeWorks.Snake
         {
           if (points[0].Equals(points[l]))
           {
+            // We hit ourselves
             Alive = false;
+            this.EndingReason = EndingReason.HitSelf;
           }
 
         }
@@ -224,6 +254,12 @@ namespace SnakeWorks.Snake
       Thread.Sleep(500);
       Console.ReadKey(true);
       Console.ReadKey(true);
+    }
+
+    public void KillGame()
+    {
+      this.Alive = false;
+      this.EndingReason = EndingReason.Starved;
     }
   }
 }

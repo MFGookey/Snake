@@ -10,6 +10,8 @@
 
     bool Alive { get; }
 
+    EndingReason EndingReason { get; }
+
     void RunGame();
   }
 }
