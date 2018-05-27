@@ -25,7 +25,28 @@ namespace SnakeWorks.Snake
 
     public int TicksSinceLastScore { get; private set; }
 
-    public bool Alive { get; private set; }
+    private bool _alive;
+
+    public bool Alive
+    {
+      get
+      {
+        lock (_aliveLock)
+        {
+          return _alive;
+        }
+      }
+
+      private set
+      {
+        lock (_aliveLock)
+        {
+          _alive = value;
+        }
+      }
+    }
+
+    private readonly object _aliveLock = new object();
 
     private ISnakeDriver Driver { get; set; }
 
